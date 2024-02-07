@@ -1,14 +1,14 @@
 from selenium import webdriver;
 from selenium.webdriver.common.by import By
 
-
+import os
 import smtplib, ssl
 import time
 
 
-SENDER = 'fedotovmike1997@mail.ru'
-TARGET = 'ilayfeeed@gmail.com'
-PASSWORD = 'RHuYPiLVCnhuj4Gw65bZ'
+SENDER = os.getenv('sender')
+TARGET = os.getenv('target') 
+PASSWORD = os.getenv('pwd') 
 PORT = 465
 UPDATE_TIME = 12 * 60 * 60 # time between checks for new chapters
 XPATH_TO_LAST_CHAPTER = '//*[@id="main-page"]/div/div[2]/div/div[2]/div[2]/div[3]/div/div[2]/div[1]/div[1]/div[1]/div/div[2]/div[1]/a'
