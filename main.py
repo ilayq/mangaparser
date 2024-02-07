@@ -16,10 +16,10 @@ XPATH_TO_LAST_CHAPTER = '//*[@id="main-page"]/div/div[2]/div/div[2]/div[2]/div[3
 
 opt = webdriver.FirefoxOptions()
 opt.add_argument('--headless')
+opt.binary_path = '/usr/bin/geckodriver'
 driver = webdriver.Firefox(options=opt)
 
 urls = { # format: '<title of manga>': [last_read_chapter, '<url>']
-    'kenshin': [135, 'https://mangalib.me/rurouni_kenshin?section=chapters&ui=1899066'],
     'juujika-no-rokunin': [154, 'https://mangalib.me/juujika-no-rokunin?section=chapters&ui=1899066'],
     'one-piece': [1106, 'https://mangalib.me/one-piece?section=chapters&ui=1899066'],
     'chainsaw-man': [154, 'https://mangalib.me/chainsaw-man-2?section=chapters&ui=1899066'],
