@@ -19,7 +19,18 @@ opt.add_argument('--headless')
 driver = webdriver.Firefox(options=opt)
 
 urls = { # format: '<title of manga>': [last_read_chapter, '<url>']
-    'kenshin': [135, 'https://mangalib.me/rurouni_kenshin?section=chapters&ui=1899066']
+    'kenshin': [135, 'https://mangalib.me/rurouni_kenshin?section=chapters&ui=1899066'],
+    'juujika-no-rokunin': [154, 'https://mangalib.me/juujika-no-rokunin?section=chapters&ui=1899066'],
+    'one-piece': [1106, 'https://mangalib.me/one-piece?section=chapters&ui=1899066'],
+    'chainsaw-man': [154, 'https://mangalib.me/chainsaw-man-2?section=chapters&ui=1899066'],
+    'tower-of-god': [179, 'https://mangalib.me/tower-of-god?section=chapters&ui=1899066'],
+    'guran-buru': [91, 'https://mangalib.me/guran-buru?section=chapters&ui=1899066'],
+    'ao-no-miburu': [9, 'https://mangalib.me/ao-no-miburo?section=chapters&ui=1899066'],
+    'kagura-bachi': [19, 'https://mangalib.me/kagura-bachi?section=chapters&ui=1899066'],
+    'real': [95, 'https://mangalib.me/real?section=chapters&ui=1899066'],
+    'sousou-no-frieren': [88, 'https://mangalib.me/sousou-no-frieren?section=chapters&ui=1899066'],
+    'yofukashi-no-uta': [77, 'https://mangalib.me/yofukashi-no-uta?section=chapters&ui=1899066'],
+    'ao-ashi': [358, 'https://mangalib.me/ao-ashi?section=chapters&ui=1899066'],
 }
 
 
