@@ -13,10 +13,10 @@ PORT = 465
 UPDATE_TIME = 12 * 60 * 60 # time between checks for new chapters
 XPATH_TO_LAST_CHAPTER = '//*[@id="main-page"]/div/div[2]/div/div[2]/div[2]/div[3]/div/div[2]/div[1]/div[1]/div[1]/div/div[2]/div[1]/a'
 
-opt = webdriver.ChromeOptions()
+
+opt = webdriver.FirefoxOptions()
 opt.add_argument('--headless')
-opt.add_argument('--window-size=1920,1080')
-driver = webdriver.Chrome(options=opt)
+driver = webdriver.Firefox(options=opt)
 
 urls = { # format: '<title of manga>': [last_read_chapter, '<url>']
     'kenshin': [135, 'https://mangalib.me/rurouni_kenshin?section=chapters&ui=1899066']
@@ -24,6 +24,7 @@ urls = { # format: '<title of manga>': [last_read_chapter, '<url>']
 
 
 def send_email(msg: str, sender=SENDER, password=PASSWORD, port=PORT, target=TARGET):
+    print("sending email...")
     ctx = ssl.create_default_context()
 
     with smtplib.SMTP_SSL('smtp.mail.ru', port, context=ctx) as server:
@@ -32,11 +33,12 @@ def send_email(msg: str, sender=SENDER, password=PASSWORD, port=PORT, target=TAR
 
 
 def has_new_chapter(url: str, last_read_chapter: int) -> bool:
+    print(f'cheching {url} for new chapters...')
     driver.get(url)
     res = driver.find_element(By.XPATH, XPATH_TO_LAST_CHAPTER).text.split()
     ch = int(res[3])
     return last_read_chapter < ch
-                                    
+     
 
 def main():
     new_chapters: list[str] = []
@@ -46,7 +48,8 @@ def main():
             if has_new_chapter(url, last_read_chapter):
                 new_chapters.append(title)
                 urls[title][0] += 1
-        except:
+        except Exception as e:
+            print(e)
             continue
 
     if not new_chapters:
@@ -59,4 +62,6 @@ def main():
 if __name__ == '__main__':
     while 1:
         main()
+        print('sleeping...')
         time.sleep(UPDATE_TIME)
+
