@@ -4,11 +4,14 @@ COPY main.py .
 COPY requirements.txt .
 copy asd.py .
 
+ARG DEBIAN_FRONTEND=noninteractive
 RUN apt-get update -y
-RUN apt-get upgrade -y
-RUN apt-get install -y python3
-RUN apt-get install -y python3-pip
-RUN pip3 install -r requirements.txt
+run apt install software-properties-common -y
+run add-apt-repository ppa:deadsnakes/ppa -y
+run apt update -y
+RUN echo 8 | apt install python3.11 -y
+RUN apt install -y python3.11-pip
+RUN python3.11 -m pip install -r requirements.txt
 run apt-get install -y wget
 
 RUN wget https://github.com/mozilla/geckodriver/releases/download/v0.34.0/geckodriver-v0.34.0-linux64.tar.gz # no way to use this shit
@@ -23,6 +26,5 @@ ENV sender=$sender
 ENV target=$target
 ENV pwd=$pwd
 
-CMD ["python3", "main.py"]
-
+CMD ["python3.11", "main.py"]
 
