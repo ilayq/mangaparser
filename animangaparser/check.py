@@ -8,6 +8,7 @@ def check(parsers: list[Parser], emailsender: EmailSender, timeout: int):
         for parser in parsers:
             if parser.has_new_chapter():
                 new_chapters_titles.append(parser.title)
+                parser.last_read_chapter += 1
 
         if new_chapters_titles:
             msg = f"{', '.join(new_chapters_titles)} have new updates"
